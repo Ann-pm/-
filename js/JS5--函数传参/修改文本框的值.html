@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body,h2, ul, li,input,p { margin:0; padding: 0;}
+        h2 { background: #6ba541; width:570px; height:32px; line-height: 32px; text-indent: 24px;
+        font-size: 18px; color: #fff;}
+        li { list-style: none; width: 570px;  border-bottom: 1px solid #eee; text-decoration: none; line-height: 40px;}
+        p { display:inline-block; text-indent: 24px; font-size: 16px; color: #808080; line-height: 40px;}
+        img { width:30px; height:30px; cursor: pointer; margin-bottom: -8px; }
+        input {  line-height:22px;  font-size: 16px;  margin-left: 16px; vertical-align: middle; padding: 0 2px; }
+        span { color: #6ba542; font-weight: bold; cursor: pointer; line-height: 40px; padding: 0 3px;}
+        .active { display: none;}
+    </style>
+    <script>
+        window.onload = function (){
+            var oUl = document.getElementsByTagName('ul')[0];
+            var aLi = oUl.getElementsByTagName('li');
+            var aP = oUl.getElementsByTagName('p');
+            var aInput = oUl.getElementsByTagName('input');
+            var aSpan = oUl.getElementsByTagName('span');
+
+            //初始化
+            for (var i=0; i<aSpan.length; i++){
+                aSpan[i].className = 'active';
+            }
+            for ( var i=0; i<aInput.length; i++){
+                aInput[i].value = aP[i].innerHTML;
+                aInput[i].className = 'active';
+            }
+
+            for ( var i=0; i<aLi.length; i++){
+                change (aLi[i]);
+            }
+
+            function change (li){
+                var oP = li.getElementsByTagName('p')[0],
+                    oImg = li.getElementsByTagName('img')[0],
+                    oInput = li.getElementsByTagName('input')[0],
+                    oSpan1 = li.getElementsByTagName('span')[0],
+                    oSpan2 = li.getElementsByTagName('span')[1];
+                oImg.onclick = function (){
+                    oP.className = 'active';
+                    oImg.className = 'active';
+                    oInput.className = '';
+                    oSpan1.className = '';
+                    oSpan2.className = '';
+                }
+                oSpan1.onclick = function (){
+                    oP.innerHTML = oInput.value;
+                    oP.className = '';
+                    oImg.className = '';
+                    oInput.className = 'active';
+                    oSpan1.className = 'active';
+                    oSpan2.className = 'active';
+                }
+                oSpan2.onclick = function (){
+                    oP.className = '';
+                    oImg.className = '';
+                    oInput.className = 'active';
+                    oSpan1.className = 'active';
+                    oSpan2.className = 'active';
+                }
+
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>分类名称</h2>
+    <ul>
+        <li>
+            <p>妙味远程课堂</p>
+            <img src="images/5.2.jpg">
+            <input type="text" value="">
+            <span>保存</span>
+            <span>取消</span>
+        </li>
+        <li>
+            <p>妙味远程课堂</p>
+            <img src="images/5.2.jpg">
+            <input type="text" value="">
+            <span>保存</span>
+            <span>取消</span>
+        </li>
+    </ul>
+</body>
+</html>

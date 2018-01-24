@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body,div,ul,li,img,p,h2{margin: 0; padding: 0;}
+        li {list-style:none;}
+        #all {width: 700px; height: 260px; border: 1px solid #a5def7; margin: 100px auto; position:relative;}
+        #header { background-image: url("images/header_bg.jpg"); height: 40px; border: 1px solid #a5def7;}
+        #wrap{position: absolute; left:200px; top:10px;}
+        #wrap li {width: 70px; height: 30px; color:#086ba5; font-weight: bold;border: 1px solid #a5def7;
+            background-color: #efeff7;float: left; font-size: 14px; line-height: 30px; text-align: center;
+            margin-left: 10px; cursor: pointer;}
+        #left{width: 190px; height: 180px;position: absolute; top:60px; left:14px;}
+        #left img{border:6px solid #a5def7;}
+        #left p{ color: #5a5a5a; text-align: center; background-color: #efeff7;}
+        #right,#right1{position:absolute; left:236px;top:60px; width: 462px; height:198px;overflow: hidden;}
+        #show,#show1{position: absolute; }
+        #show li,#show1 li{position: absolute;}
+        #show li h2,#show1 li h2 { color: #4242db; width:140px; font-size: 14px; text-align: center;}
+        #show li p,#show1 li p { font-size: 10px; width: 130px; text-indent: 1em;}
+        .nav{  position:absolute; top:170px; left: 200px;}
+        .nav li{width: 26px; height: 20px; border: 2px solid #a5def7; text-align: center; font-weight: bold;
+            margin-right: 60px; float: left; cursor: pointer;}
+        .bullet{ width: 60px;  text-align: center;position: absolute; top:174px; left: 230px;}
+        .bullet li{ width:10px; height: 10px; border: 1px solid #a5def7; border-radius: 16px; margin-left: 6px;
+            float: left; background-color: #fff;}
+        #right1 .bullet li { left:18px; position: absolute;}
+        .hide{display: none;}
+    </style>
+    <script src="doMove.js"></script>
+    <script>
+        window.onload=function(){
+            var  oRight=document.getElementById('right');
+            var  oRight1=document.getElementById('right1');
+            var  oShow=document.getElementById('show');
+            var  aLi1=oShow.getElementsByTagName('li');
+            var  oShow1=document.getElementById('show1');
+            var  aLi2=oShow1.getElementsByTagName('li');
+            var  oWrap=document.getElementById('wrap');
+            var  aLi3=oWrap.getElementsByTagName('li');
+            var  aLi4=oRight.getElementsByTagName('ul')[1].getElementsByTagName('li');
+            var  oImg=document.getElementById('left').getElementsByTagName('img')[0];
+            var  oP=document.getElementById('left').getElementsByTagName('p')[0];
+            var  aLi5=oRight.getElementsByTagName('ul')[2].getElementsByTagName('li');
+            var  aLi6=oRight1.getElementsByTagName('ul')[2].getElementsByTagName('li');
+
+            var  num=0;
+
+            oRight1.className='hide';
+            oRight.className='';
+            change(aLi3[0]);
+            aLi5[0].style.backgroundColor='#a8a8a8';
+            //初始化
+
+            function change(li){
+                for(var k=0;k<aLi3.length;k++){
+                    aLi3[k].style.backgroundColor='#efeff7';
+                }
+                li.style.backgroundColor='#fff';
+                li.style.height=31+'px';
+                li.style.borderBottom='none';
+                oShow.style.left=0;
+            }
+            function liFn(li){
+                for(var i=0;i<aLi5.length;i++){
+                    aLi5[i].style.backgroundColor='#fff';
+                }
+                li.style.backgroundColor='#a8a8a8';
+            }
+
+            aLi3[0].onmouseover=function(){
+                num=0;
+                oRight1.className='hide';
+                oRight.className='';
+                change(aLi3[0]);
+                oImg.src='images/left-1.jpg';
+                oP.innerHTML=' 拽而有礼，拽而不狂';
+                liFn(aLi5[0]);
+            }
+            aLi3[1].onmouseover=function(){
+                oRight1.className='';
+                oRight.className='hide';
+                change(aLi3[1]);
+                oImg.src='images/left-2.jpg';
+                oP.innerHTML=' 请跟我联络';
+                aLi6[0].style.backgroundColor='#a8a8a8';
+            }
+
+            for( var i=0; i<aLi1.length; i++) {
+                aLi1[i].style.left = i*156 +'px';
+            }
+            for( var j=0; j<aLi2.length; j++) {
+                aLi2[j].style.left = j*156 +'px';
+            }
+
+            aLi4[0].onclick=function(){
+                num--;
+                if(num==-1){
+                    num=0;
+                }
+                doMove(oShow,'left',30,-num*468);
+                liFn(aLi5[num]);
+            }
+            aLi4[1].onclick=function(){
+                num++;
+                if(num==3){
+                    num=2;
+                }
+                doMove(oShow,'left',30,-num*468);
+                liFn(aLi5[num]);
+            }
+        }
+    </script>
+</head>
+<body>
+<div id="all">
+    <div id="header">
+        <ul id="wrap">
+            <li>古剑奇谭</li>
+            <li>青云志</li>
+        </ul>
+    </div>
+    <div id="content">
+        <div id="left">
+            <img src="images/left-1.jpg">
+            <p> 拽而有礼，拽而不狂</p>
+        </div>
+        <div id="right">
+            <ul id="show">
+                <li>
+                    <img src="images/Q1.jpg">
+                    <h2>看不见的ta</h2>
+                    <p>每个人的手机,都有一个看不见的手机人在为你守护</p>
+                </li>
+                <li>
+                    <img src="images/Q2.jpg">
+                    <h2>我是你的喋喋phone</h2>
+                    <p>喋喋phone美颜帮助邋遢女形象改造，网络数据变身追男僚...</p>
+                </li>
+                <li>
+                    <img src="images/Q3.jpg">
+                    <h2>解忧买手店</h2>
+                    <p>在蘑菇街里有一家神奇的解忧买手店，神秘帅气的买手店主...</p>
+                </li>
+                <li>
+                    <img src="images/Q4.jpg">
+                    <h2>活色生香</h2>
+                    <p>该剧以民国初年两大香业世家的恩怨纠葛为线索，讲述了...</p>
+                </li>
+                <li>
+                    <img src="images/Q5.jpg">
+                    <h2>盗墓笔记</h2>
+                    <p>在杭州有一家小小的古董铺子，守护着那群长沙土夫子从...</p>
+                </li>
+                <li>
+                    <img src="images/Q6.jpeg">
+                    <h2>古剑奇谭</h2>
+                    <p>乌蒙灵谷的韩云溪背负着灭族惨祸，失去记忆改名为百里屠苏...</p>
+                </li>
+                <li>
+                    <img src="images/Q7.jpeg">
+                    <h2>诛仙青云志</h2>
+                    <p>草庙村少年张小凡投身青云门下，与鬼王之女碧瑶、好友...</p>
+                </li>
+                <li>
+                    <img src="images/Q8.jpeg">
+                    <h2>麻雀</h2>
+                    <p>陈深潜伏在汪伪特工总部首领毕忠良身边，通过秘密传递信息...</p>
+                </li>
+                <li>
+                    <img src="images/Q9.jpg">
+                    <h2>赏金猎人</h2>
+                    <p>清朝末年，江南小镇的富商白老爷被人杀死，酿成地方大案...</p>
+                </li>
+            </ul>
+            <ul class="nav">
+                <li>&lt;</li>
+                <li>&gt;</li>
+            </ul>
+            <ul class="bullet">
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+        <div id="right1">
+            <ul id="show1">
+                <li>
+                    <img src="images/Q4.jpg">
+                    <h2>看不见的ta</h2>
+                    <p>每个人的手机,都有一个看不见的手机人在为你守护</p>
+                </li>
+                <li>
+                    <img src="images/Q1.jpg">
+                    <h2>我是你的喋喋phone</h2>
+                    <p>喋喋phone美颜帮助邋遢女形象改造，网络数据变身追男僚机...</p>
+                </li>
+                <li>
+                    <img src="images/Q6.jpeg">
+                    <h2>解忧买手店</h2>
+                    <p>在蘑菇街里有一家神奇的解忧买手店，神秘帅气的买手店主...</p>
+                </li>
+            </ul>
+            <ul class="nav">
+                <li>&lt;</li>
+                <li>&gt;</li>
+            </ul>
+            <ul class="bullet">
+                <li></li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>

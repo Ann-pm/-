@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <script>
+        var str='www.miaov.com';
+        //alert(typeof str.split('.'));   //['www','miaov','com']
+        var arr=str.split('.');
+        //alert(arr[1]);
+
+        var str1='leo';
+        //alert(typeof str1.split());  //['leo']
+
+        //alert(str1.split(''));    //['l','e','o']
+
+        var str2='秒味课堂';
+        //alert(str2.split('味'));
+
+        var str3='/www.miaov.com/';
+
+        alert(str3.split('/'));   //[ ,www.miaov.com, ]
+
+        var str4='2013-11-29-23-07';
+        alert(str4.split('-'));   //[2013,11,29,23,07]
+        alert(str4.split('-',3));   //[2013,11,29]
+    </script>
+</body>
+</html>

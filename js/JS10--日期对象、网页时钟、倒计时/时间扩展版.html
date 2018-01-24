@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        ul,li,div,img { margin: 0; padding:0;}
+        li {list-style:none;position:relative; width:120px; height:170px;float: left; overflow: hidden;}
+        div {height: 340px; position: absolute; top:0;}
+        img {width:120px; height: 170px; vertical-align: top;}
+    </style>
+    <script>
+        window.onload=function(){
+            var aDiv=document.getElementsByTagName('div');
+            var aImg=document.querySelectorAll('li>img');
+
+            var old=getTime();
+
+            for (var i=0; i<aDiv.length; i++){
+                aDiv[i].getElementsByTagName('img')[0].src='images/'+old[i]+'.jpg';
+            }//初始化时钟
+
+            function getTime(){
+                var myTime=new Date();
+                var myHour=myTime.getHours();
+                var myMin=myTime.getMinutes();
+                var mySec=myTime.getSeconds();
+                var time=toTwo(myHour)+toTwo(myMin)+toTwo(mySec);
+
+                return time;
+            }  //获取时间函数
+
+            setInterval(function(){
+                for(var i=0; i<aImg.length; i++){
+                    aImg[i].src='images/colon1.jpg';
+                }
+                setTimeout(function(){
+                    for(var i=0; i<aImg.length; i++){
+                        aImg[i].src='images/colon.jpg';
+                    }
+                },500);
+                autoPlay();
+            },1000);   //点的闪烁
+
+            function autoPlay(){
+                var iNow=getTime();
+                for( var i=0; i<iNow.length; i++){
+                    if(old[i]!==iNow[i]){
+                        slide(i,iNow);
+                    }
+                }
+                old=iNow;
+            }
+            function slide(n,iNow){
+                var aImg=aDiv[n].getElementsByTagName('img');
+                aImg[1].src='images/'+iNow.charAt(n) +'.jpg';
+                move(aDiv[n],'top',10,-170,function(){
+                    aImg[0].src='images/'+iNow.charAt(n) +'.jpg';
+                    aDiv[n].style.top=0;
+                });
+            }
+        }
+
+        function toTwo(n){
+            return n<10?'0'+n:''+n;
+        } //补零函数
+
+        function move(obj,attr,dir,target,endFn){
+            var myAttr=parseFloat(getStyle(obj,attr));
+
+            clearInterval(obj.timer);
+            obj.timer=setInterval(function(){
+                myAttr=myAttr-dir;
+                obj.style[attr]=myAttr+'px';
+                if(myAttr<=target){
+                    obj.style[attr]=target+'px';
+                    clearInterval(obj.timer);
+                    endFn&&endFn();
+                }
+            },30);
+        }//移动函数
+        function getStyle(obj,attr){
+            return obj.currentStyle?obj.currentStyle[attr]:getComputedStyle(obj)[attr];
+        }
+    </script>
+</head>
+<body>
+    <ul id="all">
+        <li>
+            <div>
+                <img src="images/0.JPG" />
+                <img src="images/0.JPG" />
+            </div>
+        </li>
+        <li>
+            <div>
+                <img src="images/0.JPG" />
+                <img src="images/0.JPG" />
+            </div>
+        </li>
+        <li>
+            <img src="images/colon.JPG" />
+        </li>
+        <li>
+            <div>
+                <img src="images/0.JPG" />
+                <img src="images/0.JPG" />
+            </div>
+        </li>
+        <li>
+            <div>
+                <img src="images/0.JPG" />
+                <img src="images/0.JPG" />
+            </div>
+        </li>
+        <li>
+            <img src="images/colon.JPG" />
+        </li>
+        <li>
+            <div>
+                <img src="images/0.JPG" />
+                <img src="images/0.JPG" />
+            </div>
+        </li>
+        <li>
+            <div>
+                <img src="images/0.JPG" />
+                <img src="images/0.JPG" />
+            </div>
+        </li>
+    </ul>
+</body>
+</html>

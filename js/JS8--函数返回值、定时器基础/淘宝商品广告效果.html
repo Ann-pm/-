@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body, div,ul,li,img { margin: 0; padding: 0;}
+        li {list-style: none;}
+        #content { width:300px; height: 212px; padding-top: 4px; padding-left: 4px; padding-right:4px;border: 1px solid #ff6300;
+        margin:100px auto;}
+        #left  { float: left;}
+        #right { float: right;}
+        #left li ,#right li { width:50px; height: 26px; margin-bottom: 2px; border: 1px solid #ffadad;
+        text-align: center; line-height: 26px; font-size: 12px;}
+    </style>
+    <script>
+        window.onload = function (){
+            var aLi = document.getElementsByTagName('li');
+            var oImg = document.getElementsByTagName('img')[0];
+            var Url = ['images/8.1.jpg','images/8.2.jpg','images/8.3.jpg','images/8.4.jpg','images/8.5.jpg',
+                       'images/8.6.jpg','images/8.7.jpg','images/8.8.jpg','images/8.9.jpg','images/8.10.jpg',
+                       'images/8.11.jpg','images/8.12.jpg','images/8.13.jpg','images/8.14.jpg'];
+            var num=0;
+            var timer= null;
+
+            timer=setInterval(change,1000);
+            function change (){
+                if (num<aLi.length/2){
+                    num++;
+                    if (num==aLi.length/2){
+                        num=aLi.length-1;
+                    }
+                }else {
+                    num--;
+                    if (num==aLi.length/2-1){
+                        num=0;
+                    }
+                }
+                fn1 ();
+            }
+            function fn1 (){
+                for (var i=0; i<aLi.length; i++){
+                    aLi[i].style.background = '#fff';
+                }
+                aLi[num].style.background = '#ff8494';
+                oImg.src = Url[num];
+            }
+            for ( var i=0; i<aLi.length; i++) {
+                aLi[i].index = i;
+                aLi[i].onmouseover = function () {
+                    clearInterval(timer);
+                    num = this.index;
+                    fn1();
+                }
+                aLi[i].onmouseout = function (){
+                    num = this.index;
+                    for (var i=0; i<aLi.length; i++){
+                        aLi[i].style.background = '#fff';
+                    }
+                    timer=setInterval(change,1000);
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="content">
+        <ul id="left">
+            <li style="background:#ff8494">连衣裙</li>
+            <li>雪纺</li>
+            <li>T恤</li>
+            <li>铅笔裤</li>
+            <li>婚纱</li>
+            <li>外套</li>
+            <li>连体裤</li>
+        </ul>
+        <img src="images/8.1.jpg">
+        <ul id="right">
+            <li>包包</li>
+            <li>凉鞋</li>
+            <li>单鞋</li>
+            <li>太阳镜</li>
+            <li>丝袜</li>
+            <li>帆布鞋</li>
+            <li>情侣装</li>
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div,input,a,p,span,ul,li{margin: 0; padding: 0;}
+        li {list-style: none;}
+        #all {border: 10px solid #c0c0c0; padding: 10px; margin: 100px auto; width: 780px; height: 220px;
+            position: relative;}
+        textarea,#content{width: 290px; height: 190px; border: 1px dashed #393118; padding:10px; font-size: 12px;
+            line-height: 20px; overflow: hidden;}
+        input{background: #efefd6;}
+        a{position: absolute; left: 340px; color: #fff; background-color: #f76300; padding: 10px 20px;
+            font-size: 16px; font-weight: bold; cursor: pointer;}
+        p{position: absolute; left: 340px; top:60px; font-size: 16px; font-weight: bold; width:120px;
+            text-align: center;}
+        ul{position: absolute; left: 352px; top:90px; opacity:0; filter: alpha(opacity:0);}
+        ul li{float: left; ;width: 8px; height: 10px; background:#e7a521; margin: 2px;}
+        #content{position: absolute; left:480px; top:10px; background: #63eff7;}
+    </style>
+    <script>
+        window.onload=function(){
+            var oText=document.getElementsByTagName('textarea')[0];
+            var oA=document.getElementsByTagName('a')[0];
+            var aSpan=document.getElementsByTagName('span');
+            var oUl=document.getElementsByTagName('ul')[0];
+            var aLi=document.getElementsByTagName('li');
+            var oCon=document.getElementById('content');
+
+            var num=0;
+
+            oA.onclick=function(){
+                var str=oText.value;
+                if(!str){
+                    alert('请输入文字内容');
+                }else {
+                    if(oA.clicked) {return;}
+                    oA.clicked=true;
+                    oA.style.opacity=0.5;
+                    oA.style.filter='alpha(opacity:50)';
+                    opacity(oUl, 10, 100, 30);
+                    aSpan[1].innerHTML = str.length;
+                    oA.timer = setInterval(function () {
+                        aSpan[0].innerHTML = num;
+                        oText.value = str.substring(num);
+                        oCon.innerHTML = str.substring(0, num);
+                        for (var i = 0; i < aLi.length; i++) {
+                            aLi[i].style.background = '#e7a521';
+                        }
+                        aLi[num % aLi.length].style.background = '#ff0000';
+                        num++;
+                        if (num == str.length + 1) {
+                            clearInterval(oA.timer);
+                            opacity(oUl, 10, 0, 30);
+                            oA.style.opacity = 1;
+                            oA.style.filter = 'alpha(opacity:100)';
+                            num = 0;
+                            oA.clicked = false;
+                        }
+                    }, 80);
+                }
+            }
+        }
+        function opacity(obj,dir,target,endFn){
+            var currentOpacity=getStyle(obj,'opacity')*100;
+            var step=currentOpacity<target?dir:-dir;
+
+            clearInterval(obj.opacity);
+            obj.opacity=setInterval(function(){
+                currentOpacity=getStyle(obj,'opacity')*100;
+                var  nextOpacity=currentOpacity+step;
+                if(nextOpacity>target&&step>0||nextOpacity<target&&step<0){
+                    nextOpacity=target;
+                }
+                obj.style.opacity=nextOpacity/100;
+                obj.style.filter='alpha(opacity:'+nextOpacity+')';
+                if(nextOpacity==target){
+                    clearInterval(obj.opacity);
+                    endFn&&endFn();
+                }
+            },30);
+        }
+        function getStyle(obj,attr){
+            return getComputedStyle(obj)?getComputedStyle(obj)[attr]:obj.currentStyle[attr];
+        }
+    </script>
+</head>
+<body>
+<div id="all">
+        <textarea>
+        这个年头啊，女权是块砖，哪里需要往哪搬，反正女权是政治正确，远的不说，就说最近的《楚乔传》，宣传时主打的概念是“从女奴到将军的女性独立奋斗史”。
+        在人命如草芥的乱世，一个身份最底层的女奴，如何反抗既定的命运，为自己和更多有着类似遭遇的人争取自由,这个主题想想就挺燃的。</textarea>
+    <a>把文字右移</a>
+    <p><span>0</span>/<span>0</span></p>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <div id="content"></div>
+</div>
+</body>
+</html>

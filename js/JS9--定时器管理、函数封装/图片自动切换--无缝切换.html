@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body,div,img,ul,li,h4,p{margin: 0;padding: 0;}
+        li{list-style:none;}
+        #all{width: 500px; height: 200px; border:6px solid #ccc; margin: 100px auto; position: relative;
+            overflow: hidden;}
+        #wrap,#wrap img {position: absolute; top:0;}
+        #text1 li{width:500px;height: 80px;position: absolute; top:200px; background-color:#000;
+            filter:alpha(opacity:70);opacity: 0.7; color:#fff;}
+        h4{ left: 20px; top:8px;position: absolute;}
+        p{ left: 20px; top:36px; font-size: 14px; width:440px; text-indent: 1em;position: absolute;}
+        .hide{display:none;}
+    </style>
+    <script src="doMove.js"></script>
+    <script>
+        window.onload=function(){
+
+            var oWrap=document.getElementById('wrap');
+            var aImg=document.getElementsByTagName('img');
+            var oText=document.getElementById('text1');
+            var aLi=oText.getElementsByTagName('li');
+
+            var oneWidth=aImg[0].offsetWidth;
+            var num= 0,num2= 0;
+
+            for(var i=0; i<aImg.length;i++){
+                aImg[i].style.left=i*oneWidth+'px';
+            }
+
+            doMove(aLi[0],'top',5,120,function(){
+                setTimeout(function() {
+                    doMove(aLi[0], 'top', 5, 200);
+                },1500);
+            });
+
+            setInterval(change,3500);
+
+            function change(){
+                if(num==0){
+                    aImg[0].style.position='static';
+                    oWrap.style.left=0;
+                    num2=0;
+                }
+                if(num==aImg.length-1){
+                    num=0;
+                    aImg[0].style.position='relative';
+                    aImg[0].style.left=aImg.length*(oneWidth)+'px';
+                }else {
+                    num++;
+                }
+                num2++;
+
+                var target=-num2*oneWidth;
+                doMove(oWrap,'left',10,target,function(){
+
+                    doMove(aLi[num],'top',5,120,function(){
+                        setTimeout(function() {
+                            doMove(aLi[num], 'top', 5, 200);
+                        },1500);
+                    });
+                });
+            }
+        }
+    </script>
+</head>
+<body>
+<div id="all">
+    <div id="wrap">
+        <img src="images/4.1.jpg">
+        <img src="images/4.2.jpg">
+        <img src="images/4.3.jpg">
+        <img src="images/4.4.jpg">
+        <img src="images/4.5.jpg">
+    </div>
+    <ul id="text1">
+        <li>
+            <h4>折天记</h4>
+            <p>开元之处，有神石散落大陆，相传观神石碑文可得知天机，至此神石成为人间圣物。</p>
+        </li>
+        <li>
+            <h4>三生三世十里桃花</h4>
+            <p>桃花灼灼，枝叶蓁蓁，妖娆伤眼。记忆可以封存，忘得了前世情缘，忘不了桃林十里，亦忘不了十里桃林中玄衣的少年。</p>
+        </li>
+        <li>
+            <h4>美人为馅</h4>
+            <p>在外人面前，韩沉这个男人，从来都是英俊冷酷，生人勿近。他似皑皑霜雪般皎洁清冷，又似黑夜流水般沉静动人。
+            </p>
+        </li>
+        <li>
+            <h4>楚乔传</h4>
+            <p>乱世风谲云诡，她心随光亮灿若星子，砺炼成心怀天下威震四海的秀丽王</p>
+        </li>
+        <li>
+            <h4>醉玲珑</h4>
+            <p>如果这世上所有的东西只能选一样，我宁肯要你的笑。若你苦在其中，即便是天下，我得之何用？</p>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        li {list-style: none; margin: 20px;}
+        em { font-family: Arial;}
+        p {margin-left: 60px; line-height: 24px;}
+    </style>
+    <script>
+        window.onload = function (){
+            var oUl = document.getElementById('list');
+            var aLi = oUl.getElementsByTagName('li');
+            var oP = document.getElementsByTagName('p')[0];
+            for (var i=0; i<aLi.length;i++){
+                fn1(aLi[i]);
+            }
+            function fn1(oLi) {
+                var aBtn = oLi.getElementsByTagName('input');
+                var oStrong = oLi.getElementsByTagName('strong')[0];
+                var oEm = oLi.getElementsByTagName('em')[0];
+                var oSpan = oLi.getElementsByTagName('span')[0];
+                var n1 = Number(oStrong.innerHTML);
+                var n2 = parseFloat(oEm.innerHTML);
+                aBtn[0].onclick = function () {
+                    n1--;
+                    if (n1 < 0) {
+                        n1 = 0;
+                    }
+                    oStrong.innerHTML = n1;
+                    oSpan.innerHTML = n1 * n2 + '元';
+                    count();
+                }
+                aBtn[1].onclick = function () {
+                    n1++;
+                    oStrong.innerHTML = n1;
+                    oSpan.innerHTML = n1 * n2 + '元';
+                    count();
+                }
+            }
+            function count (){
+                var aStrong = oUl.getElementsByTagName('strong');
+                var aEm = oUl.getElementsByTagName('em');
+                var aSpan1 = oUl.getElementsByTagName('span');
+                var total = 0,cost= 0,price= 0;
+                var arr = [];
+                for (var i=0; i<aLi.length;i++){
+                    total += parseFloat(aStrong[i].innerHTML);
+                    cost += parseFloat(aSpan1[i].innerHTML);
+                    if (aStrong[i].innerHTML>0) {
+                        arr.push(parseFloat(aEm[i].innerHTML));
+                        for ( var j=0; j<arr.length; j++){
+                            if (price<arr[j]){
+                                price=arr[j];
+                                oP.innerHTML = '商品合计共：'+total+'件，共花费了：'+cost+'元'+"<br/>"+'其中最贵的商品单价是：'+price+'元';
+                            }else {
+                                oP.innerHTML = '商品合计共：'+total+'件，共花费了：'+cost+'元'+"<br/>"+'其中最贵的商品单价是：'+price+'元';
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <ul id="list">
+        <li>
+            <input type="button" value="-">
+            <strong>0</strong>
+            <input type="button" value="+">
+            单价：<em>12.5元</em>
+            小计：<span>0元</span>
+        </li>
+        <li>
+            <input type="button" value="-">
+            <strong>0</strong>
+            <input type="button" value="+">
+            单价：<em>10.5元</em>
+            小计：<span>0元</span>
+        </li>
+        <li>
+            <input type="button" value="-">
+            <strong>0</strong>
+            <input type="button" value="+">
+            单价：<em>8.5元</em>
+            小计：<span>0元</span>
+        </li>
+        <li>
+            <input type="button" value="-">
+            <strong>0</strong>
+            <input type="button" value="+">
+            单价：<em>8元</em>
+            小计：<span>0元</span>
+        </li>
+        <li>
+            <input type="button" value="-">
+            <strong>0</strong>
+            <input type="button" value="+">
+            单价：<em>14元</em>
+            小计：<span>0元</span>
+        </li>
+    </ul>
+    <p>
+        商品合计共：0件，共花费了：0元<br/>
+        其中最贵的商品单价是：0元
+    </p>
+</body>
+</html>

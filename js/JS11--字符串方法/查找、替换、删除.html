@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body,p,a,div,span,input{margin: 0; padding: 0;}
+        #wrap{width:636px; height: 492px; margin: 100px auto; background-color: #efefe7; position: relative;}
+        #wrap p{width:448px; height:198px; position: absolute; top:62px; left: 30px; line-height: 22px;
+            font-size: 16px; background-color: #fff; padding: 26px; letter-spacing: 2px;}
+        #list{width: 80px; height: 120px; position: absolute;top:50px; left: 540px;}
+        #list a{height: 40px; background-color: #94948c; line-height: 40px; text-align: center; margin-bottom: 2px;
+            cursor: pointer; display: none; color: #fff; font-weight: bold;}
+        #list a:hover{background-color:#e73100; }
+        #list a:first-child:hover{background-color:#808080; }
+        #box{width: 500px; height: 126px; border: 10px solid #e71063; position: absolute;top:322px; left: 20px;
+            padding: 10px;display: none;}
+        #close{ float: right; cursor: pointer; font-weight: bold; font-size: 18px;}
+        #header{border-bottom: 2px solid #e73100; position: absolute; top:32px; left: 30px; width: 460px; height: 25px;}
+        #header span{padding: 8px 22px;  font-size: 14px;}
+        #search,#displace{ position: absolute; top:74px; left: 30px; display: none;}
+        #search input[type=text],#displace input[type=text]{ width: 182px; height: 26px;}
+        #search input[type=button],#displace input[type=button]{height: 26px;}
+    </style>
+    <script>
+        window.onload=function(){
+            var oDiv=document.getElementById('list');
+            var aA=oDiv.getElementsByTagName('a');
+            var oBox=document.getElementById('box');
+            var oClose=document.getElementById('close');
+            var oHeader=document.getElementById('header');
+            var aSpan=oHeader.getElementsByTagName('span');
+            var oSearch=document.getElementById('search');
+            var oDisplace=document.getElementById('displace');
+            var aInput1=oSearch.getElementsByTagName('input');
+            var aInput2=oDisplace.getElementsByTagName('input');
+            var oP=document.getElementsByTagName('p')[0];
+
+            var onOff=true;
+            var str=oP.innerHTML;
+            var str1='',str2='';
+
+            aA[0].style.display='block';
+
+            aA[0].onclick=function(){
+                if(onOff){
+                    for(var i=0; i<aA.length; i++) {
+                        aA[i].style.display = 'block';
+                    }
+                    aA[1].onclick=function(){
+                        close();
+                        change();
+                        aSpan[0].style.backgroundColor='#e73100';
+                        oSearch.style.display='block';
+                        myFun(0);
+                        myClick();
+                    }
+                    aA[2].onclick=function(){
+                        close();
+                        change();
+                        aSpan[1].style.backgroundColor='#e73100';
+                        oDisplace.style.display='block';
+                        myFun(1);
+                        myClick();
+                    }
+                    onOff=false;
+                }else{
+                    close();
+                }
+            }
+
+            function change(){
+                for(var j=0; j<aSpan.length; j++){
+                    aSpan[j].style.backgroundColor='#efefe7';
+                }
+                oBox.style.display='block';
+                oSearch.style.display=oDisplace.style.display='none';
+            }
+
+            function close(){
+                for(var i=0; i<aA.length; i++){
+                    aA[i].style.display='none';
+                }
+                aA[0].style.display='block';
+                oP.innerHTML=str;
+                onOff=true;
+            }
+
+            function myClick(){
+                for(var i=0; i<aSpan.length; i++) {
+                    aSpan[i].index = i;
+                    aSpan[i].onclick = function () {
+                        var num = this.index;
+                        oP.innerHTML=str;
+                        change();
+                        this.style.backgroundColor = '#e73100';
+                        myFun(num);
+                    }
+                }
+                oClose.onclick=function(){
+                    oBox.style.display='none';
+                }
+            }
+
+            function myFun(num){
+                if(num==0){
+                    oSearch.style.display='block';
+                    aInput1[1].onclick=function(){
+                        oP.innerHTML=str;
+                        str1=aInput1[0].value;
+                        aInput1[0].value='';
+                        if(!str1){
+                            alert('请输入内容！');
+                        }else{
+                            if(str.indexOf(str1)==-1){
+                                alert('未找到'+str1+'！');
+                            }else{
+                                oP.innerHTML=str.split(str1).join('<span style="background: yellow;">'+str1+'</span>');
+                            }
+                        }
+                    }
+                }else{
+                    oDisplace.style.display='block';
+                    aInput2[2].onclick=function(){
+                        oP.innerHTML=str;
+                        str1=aInput2[0].value;
+                        str2=aInput2[1].value;
+                        aInput2[0].value=aInput2[1].value='';
+                        if(!str1){
+                            alert('请输入内容！');
+                        }else{
+                            if(str.indexOf(str1)==-1){
+                                alert('未找到'+str1+'！');
+                            }else{
+                                if(!str2){
+                                    if(confirm('确定要删除'+str1+'！')){
+                                        str2='';
+                                    }else{
+                                        return;
+                                    }
+                                }
+                                oP.innerHTML=str.split(str1).join('<span style="background: yellow;">'+str2+'</span>');
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<div id="wrap">
+    <p>新加坡是城市国家，原意狮城。新加坡「Singapura」是梵语“狮城”之谐音，由于当地居民受古代印度文化影响较深，喜欢用
+        梵语作为地名。而狮子具有勇猛、雄健的特征，故以此作为地名。新加坡的国花叫卓锦·万代兰，它有一个姣美的唇片和五个尊片，
+        唇片三绽，象征新加坡四大民族和各个语言的平等。花由下面相对的裂片拱扶着，象征着和谐，同甘苦、共荣辱。卓锦万代兰全年
+        盛开，生命力特强，代表着新加坡争取繁荣昌盛的愿望与其国民不折不饶、顽强拼搏的精神。
+    </p>
+    <div id="list">
+        <a>展开</a>
+        <a>查找</a>
+        <a>替换</a>
+    </div>
+    <div id="box">
+        <div id="close">×</div>
+        <div id="header">
+            <span>查找</span>
+            <span>替换</span>
+        </div>
+        <div id="search">
+            <input type="text" />
+            <input type="button" value="查找"/>
+        </div>
+        <div id="displace">
+            <input type="text" />
+            <input type="text" />
+            <input type="button" value="替换"/>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div{width:440px;height: 440px; border: 1px solid #000; font-size: 16px;padding: 20px;
+            margin-bottom: 6px; line-height: 40px;word-wrap: break-word;word-break:break-all; }
+        span{ padding: 4px 16px; }
+    </style>
+</head>
+<body>
+    <div id="div1">
+    </div>
+    <input type="text" />
+    <input type="button" value="按钮" />
+
+    <script>
+        var oDiv=document.getElementById('div1');
+        var aInp=document.getElementsByTagName('input');
+        var arrColor=['#FFC','#CC3','#6FC','#9C9'];
+
+        aInp[1].onclick=function(){
+            var str=aInp[0].value;
+            var arr=str.split('');
+
+            for(var i=0; i<arr.length; i++){
+                arr[i]='<span style="background:' + arrColor[i%arrColor.length] + ';">' +arr[i]+'</span>';
+            }
+
+            oDiv.innerHTML+=arr.join('');
+
+        }
+
+        var arr=['aa','bb','cc'];
+        alert(typeof arr.join());    //'aa'+','+'bb'+','+'cc'
+        alert(arr.join().length);    //8
+        //不加参数，默认加逗号；
+
+        alert(arr.join(''));  //'aa'+''+'bb'+''+'cc'    aabbcc
+        alert(arr.join('-'));
+    </script>
+</body>
+</html>

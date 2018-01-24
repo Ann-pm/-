@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <script>
+        var json={
+            'url':['img/1.png','img/2.png','img/3.png','img/4.png'],
+            'text':['小宠物','图片二','图片三','图片四']
+        };
+        alert(json.length);   //undefined    json没有length，不能用for循环
+
+
+        var arr=['a','b','c'];
+        for(var i in arr){
+            alert(arr[i]);
+        }
+        //数组是可以用for in来遍历的
+        //for in  对于json和数组都是可以使用的，但是for循环只能对数组使用，json不行
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        window.onload=function(){
+            var oP=document.getElementsByTagName('p')[0];
+            var oSpan=oP.getElementsByTagName('span')[0];
+            var oA=oP.getElementsByTagName('a')[0];
+            var str=oSpan.innerHTML;
+            var onOff=true;
+
+            oA.onclick=function(){
+                if(onOff){
+                    oSpan.innerHTML=str.substring(0,18);
+                    oA.innerHTML='>>展开';
+                }else{
+                    oSpan.innerHTML=str;
+                    oA.innerHTML='<<收缩';
+                }
+                onOff=!onOff;
+            }
+        }
+    </script>
+</head>
+<body>
+    <p><span>秒味课堂是一支独具特色的IT培训团队，秒味反对传统IT枯燥乏味的教学模式，秒味提供一种
+        全新的快乐学习方法！<br />2013年底，秒味课堂最新推出“远程培训”服务，受到很多朋友们的喜爱和
+        追捧，我们必将更加努力的帮助远程学习的朋友们实现技术提升</span>......<a href="javascript:;"><<收缩</a> </p>
+</body>
+</html>

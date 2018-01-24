@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div { width:50px; height:50px; text-align:center; line-height: 50px; border:1px solid #f1f1f1; background:red; font-size:26px;
+        position:absolute; top:0; left: 0;}
+    </style>
+    <script>
+        window.onload = function (){
+            var oBtn = document.getElementById('btn1');
+            var aDiv = document.getElementsByTagName('div');
+            var oSpan = document.getElementById('span1');
+            var str='',top,left;
+            var a=0;
+            oBtn.onclick = function (){
+            if (a==0) {
+                a = 1;
+                str = '';
+                for (var i = 0; i < 5; i++) {
+                    left = i * 50 + 'px';
+                    if (i > 2){
+                        top =  i * 50-60 + 'px';
+                    }else{
+                        top =  140 - 50 * i + 'px';
+                    }
+                    str+='<div style="top:' + top + '; left:'+ left+'">'+ i +'</div>';
+                }
+            }else if (a == 1) {
+                a = 2;
+                str = '';
+                for (var i = 0; i < 5; i++) {
+                    top = 30+i * 50 + 'px';
+                    if (i > 2){
+                        left =  40 + (4 - i) * 50 + 'px';
+                    }else{
+                        left =  40 + 50 * i + 'px';
+                    }
+                    str+='<div style="top:' + top + '; left:'+ left+'">'+ i +'</div>';
+                }
+            } else if (a == 2) {
+                a = 3;
+                str = '';
+                for (var i = 0; i < 5; i++) {
+                    left = i * 50 + 'px';
+                    if (i > 2){
+                        top =  40 + (4 - i) * 50 + 'px';
+                    }else{
+                        top =  40 + 50 * i + 'px';
+                    }
+                    str+='<div style="top:' + top + '; left:'+ left+'">'+ i +'</div>';
+                }
+            } else if (a == 3) {
+                a = 0;
+                str = '';
+                for (var i = 0; i < 5; i++) {
+                    top = i * 50 + 'px';
+                    if (i > 2){
+                        left =  i * 50-60 + 'px';
+                    }else{
+                        left =  140 - 50 * i + 'px';
+                    }
+                    str+='<div style="top:' + top + '; left:'+ left+'">'+ i +'</div>';
+                }
+            }
+                 oSpan.innerHTML=str;
+            }
+        }
+    </script>
+</head>
+<body>
+    <input id="btn1" type="button" value="按钮"><br />
+    <span id="span1"></span>
+</body>
+</html>

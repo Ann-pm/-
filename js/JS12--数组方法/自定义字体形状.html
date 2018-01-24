@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body,div,select,textarea,input{margin: 0; padding: 0;}
+        #all {width:440px; height: 280px; margin: 100px auto; background: #fafafa; position: relative;
+            padding-left: 20px;}
+        #text {width: 424px; height: 78px; border: 1px solid #989898; position: absolute; top:20px;
+            overflow: hidden;}
+        select{width: 126px; height: 20px; position: absolute; top:110px;}
+        textarea{width: 404px; height: 58px; border: 1px solid #989898; position: absolute; top:140px;
+            padding: 10px;}
+        input {width: 70px; height: 20px; position: absolute; top:230px;}
+        #text div{position: relative; padding-left: 10px;}
+        #text div img{width: 30px; height: 30px; position: absolute; }
+        #text div span{width: 12px; height: 20px; position: absolute; padding: 0 8px; font-weight: bold;}
+    </style>
+    <script>
+        window.onload=function(){
+            var oText=document.getElementById('text');
+            var oSelect=document.getElementsByTagName('select')[0];
+            var oTxar=document.getElementsByTagName('textarea')[0];
+            var oInput=document.getElementsByTagName('input')[0];
+            var json={
+                'balloon':'images/balloon.jpg',
+                'ali':'images/ali.gif',
+                'funny':'images/funny.jpg',
+                'cat':'images/cat.jpg',
+                'cute':'images/cute.jpg'
+            }
+
+            oInput.onclick=function() {
+                oText.innerHTML='';
+                var str = oTxar.value;
+                if (!str) {
+                    alert('您还没有输入内容！');
+                } else {
+                    useFont(str);
+                }
+                oTxar.value='';
+            }
+
+            function useFont(str){
+                for(var attr in json){
+                    if(oSelect.value==attr){
+                        for(var i=0; i<str.length; i++){
+                            oText.innerHTML+='<div><img style="top: 30px; left: '+30*i+'px'+';" src="'+ json[attr]
+                            +'" />'+'<span style="top:4px; left:'+30*i+'px'+';">'+str[i]+'</span>'+'</div>';
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="all">
+        <div id="text"></div>
+        <select>
+            <option value="balloon">气球字体</option>
+            <option value="ali">阿狸字体</option>
+            <option value="funny">搞笑字体</option>
+            <option value="cat">龙猫字体</option>
+            <option value="cute">萌萌哒字体</option>
+        </select>
+        <textarea></textarea>
+        <input type="button" value="确定"/>
+    </div>
+</body>
+</html>

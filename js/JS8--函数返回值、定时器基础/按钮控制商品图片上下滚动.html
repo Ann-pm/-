@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body, div,span,h2,ul,li,p,img {margin: 0; padding: 0;}
+        li {list-style: none;}
+        #all {width: 168px; height:500px; margin:50px auto;}
+        #nav { background:url(images/nav_bg.jpg);height:16px; padding: 4px 6px ; font-size:10px; color: #fff; }
+        #nav h2 { float: left;}
+        #nav a { float: right; font-weight: bold; font-size:12px;color: #fff; text-decoration: none;}
+        #content {border-left:1px solid #a0a0a4;border-right:1px solid #a0a0a4;border-bottom:4px solid #a0a0a4;
+            border-radius: 0 0 8px 8px;width: 166px; height:472px; position: relative;  overflow: hidden;}
+        #content ul {padding: 0 10px; height: 430px;  position:absolute; top:0; margin-top:24px;}
+        #content ul li {width:146px; height:64px; border-bottom: 1px solid #c6c6ce; padding:10px 0;}
+        #content ul li:last-child {border-bottom:none;}
+        #content ul li p {width:60px; float: left; font-size: 12px;}
+        #content ul li img {width: 80px; height: 70px; float: right;}
+        #prev,#next{height: 24px; width: 166px;display: block; z-index:1;position:absolute;}
+        #prev {top:0;background: url(images/prev.jpg) no-repeat center #efefe7; }
+        #next {bottom:0;background: url(images/next.jpg) no-repeat center #efefe7;}
+    </style>
+    <script>
+        window.onload = function (){
+            var oPrev = document.getElementById('prev');
+            var oNext = document.getElementById('next');
+            var oUl = document.getElementsByTagName('ul')[0];
+            var timerUp=null,timerDown=null;
+
+            function getStyle (obj,attr){
+                return obj.currentStyle?obj.currentStyle[attr]:getComputedStyle(obj)[attr];
+            }
+            //修改按钮的颜色
+            oPrev.onmousedown=oNext.onmousedown=function(){
+                this.style.backgroundColor = '#e7efef';
+            }
+            oPrev.onmouseup=oNext.onmouseup=function(){
+                this.style.backgroundColor = '#efefe7';
+            }
+            //向上的按钮
+            oPrev.onmousedown = function (){
+                timerUp=setInterval(function(){
+                    if (parseInt(getStyle(oUl,'top'))>-260){
+                        oUl.style.top=parseInt(getStyle(oUl,'top'))-10+'px';
+                    }else {
+                        oUl.style.top='-260px';
+                    }
+                },100);
+            }
+            //向上的按钮抬起
+            oPrev.onmouseup = function (){
+                clearInterval(timerUp);
+            }
+            //向下的按钮
+            oNext.onmousedown = function (){
+                timerDown=setInterval(function(){
+                    if (parseInt(getStyle(oUl,'top'))<0){
+                        oUl.style.top=parseInt(getStyle(oUl,'top'))+10+'px';
+                    }else {
+                        oUl.style.top='0px';
+                    }
+                },100);
+            }
+            //向下的按钮抬起
+            oNext.onmouseup = function (){
+                clearInterval(timerDown);
+            }
+        }
+    </script>
+</head>
+<body>
+<div id="all">
+    <div id="nav">
+        <h2>李易峰</h2>
+        <a href="#">&gt;&gt;更多</a>
+    </div>
+    <div id="content">
+        <a id="prev" href="#"></a>
+        <ul>
+            <li>
+                <p>拽而有礼 拽而不狂</p>
+                <img src="images/Q1.jpg">
+            </li>
+            <li>
+                <p>“拽”是一种态度</p>
+                <img src="images/Q2.jpg">
+            </li>
+            <li>
+                <p>要个性做自己</p>
+                <img src="images/Q3.jpg">
+            </li>
+            <li>
+                <p>经历着不平凡的人生</p>
+                <img src="images/Q4.jpg">
+            </li>
+            <li>
+                <p>保持着天真的内心</p>
+                <img src="images/Q5.jpg">
+            </li>
+            <li>
+                <p>我的年少有你</p>
+                <img src="images/Q6.jpeg">
+            </li>
+            <li>
+                <p>你的青春有我</p>
+                <img src="images/Q7.jpeg">
+            </li>
+            <li>
+                <p>时光不老，我们不散</p>
+                <img src="images/Q8.jpeg">
+            </li>
+        </ul>
+        <a id="next" href="#"></a>
+    </div>
+</div>
+</body>
+</html>

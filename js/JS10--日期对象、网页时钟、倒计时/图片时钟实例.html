@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        window.onload=function(){
+            var oP=document.getElementById('time');
+            var aImg=document.getElementsByTagName('img');
+
+            setInterval(fnTime,1000);
+            fnTime();
+            function fnTime(){
+                var myTime=new Date();  //当前系统的时间对象
+                var iHour = myTime.getHours(),
+                    iMinute = myTime.getMinutes(),
+                    iSecond = myTime.getSeconds();
+                var str=toTwo(iHour)+toTwo(iMinute)+toTwo(iSecond);
+
+                oP.innerHTML=str;
+
+                for(var i=0;i<aImg.length;i++){
+                    aImg[i].src='images/'+str.charAt(i)+'.JPG';
+                }
+            }
+        }
+        function toTwo(n){
+            return n<10?'0'+n:''+n;
+        }
+
+    </script>
+</head>
+<body>
+    <p id="time" style="font-size: 60px;"></p>
+    <img src="images/0.JPG">
+    <img src="images/0.JPG">
+    <img src="images/0.JPG">
+    <img src="images/0.JPG">
+    <img src="images/0.JPG">
+    <img src="images/0.JPG">
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>带缩略图的图片切换效果</title>
+    <style>
+        body { background: black;}
+        ul { padding:0; margin:0;}
+        li { list-style: none;}
+        #content { width:390px; height:480px; border:1px solid #FFF; margin:40px auto;
+        text-align: center; background: #eee; position:relative;}
+        #showpic { width:390px; height: 480px; background: url(images/1.png) center center no-repeat;}
+        #content a { width:40px; height: 40px; border-radius: 40px; line-height: 40px; color:#fff;
+               position:absolute; top:50%; text-align:center; font-size:30px; background: #ea7c1c;
+               opacity:0.4; filter:alpha(opacity:40); text-decoration: none; margin-top:-20px;}
+        #content a:hover { opacity: 0.9; filter:alpha(opacity:90);}
+        #prev { left:10px; }
+        #next { right:10px; }
+        #dots { width:200px; margin:0 auto; position: absolute; top:500px; left:50%;
+            margin-left: -102px; text-align:center; padding: 3px;}
+        #dots li { background: #808080; display: inline-block; width:16px; height: 16px;
+            border-radius: 16px; margin:0 5px; cursor: pointer; position:relative;}
+        #dots .mini { position:absolute;bottom:26px; left:-12px; width:38px; height:48px;
+        border:2px solid #fff;}
+    </style>
+    <script>
+        window.onload = function (){
+            var oImg = document.getElementById('showpic');
+            var oPrev = document.getElementById('prev');
+            var oNext = document.getElementById('next');
+            var oUl = document.getElementById('dots');
+            var aLi = oUl.getElementsByTagName('li');
+            var arrUrl = ['images/1.png','images/2.png','images/3.png','images/4.png'];
+            var num = 0;
+            oImg.src = arrUrl[num];
+            aLi[num].style.background = '#ea7c1c';
+
+            function listyle(){
+                for (var i=0; i<aLi.length;i++){
+                    aLi[i].style.background = '';
+                    aLi[num].style.background = '#ea7c1c';
+                }
+            }
+            oPrev.onclick = function (){
+                if ( num ==0 ){
+                    num=3;
+                    oImg.src = arrUrl[num];
+                    listyle();
+                }else {
+                    num--;
+                    oImg.src = arrUrl[num];
+                    listyle();
+                }
+            }
+            oNext.onclick = function (){
+                if ( num ==3 ){
+                    num=0;
+                    oImg.src = arrUrl[num];
+                    listyle();
+                }else {
+                    num++;
+                    oImg.src = arrUrl[num];
+                    listyle();
+                }
+            }
+            for ( var i=0; i<aLi.length; i++) {
+                aLi[i].index = i;
+                aLi[i].onmouseover = function (){
+                    aLi[this.index].innerHTML ='<img class="mini" src= "'+arrUrl[this.index]+'" />';
+                }
+                aLi[i].onmouseout = function (){
+                    aLi[this.index].innerHTML = '';
+                }
+                aLi[i].onclick = function (){
+                    for (var i=0; i<aLi.length;i++){
+                        aLi[i].style.background = '';
+                        aLi[this.index].style.background = '#ea7c1c';
+                        oImg.src = arrUrl[this.index];
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="content">
+        <img src="" id="showpic">
+        <a id="prev" href="javascript:">&lt;</a>
+        <a id="next" href="javascript:">&gt;</a>
+        <ul id="dots">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+</body>
+</html>

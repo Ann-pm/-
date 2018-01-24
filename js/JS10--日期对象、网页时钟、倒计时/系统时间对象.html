@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        /*
+        系统时间对象
+        */
+        window.onload=function(){
+            var oBody=document.body;
+
+            setInterval(fnTime,1000);
+            fnTime();
+            function fnTime(){
+                var myTime=new Date();  //当前系统的时间对象
+                var iYear = myTime.getFullYear(),
+                        iMonth = myTime.getMonth()+1,
+                        iDate = myTime.getDate(),
+                        iWeek = myTime.getDay(),
+                        iHour = myTime.getHours(),
+                        iMinute = myTime.getMinutes(),
+                        iSecond = myTime.getSeconds();
+                var str='';
+
+
+                switch (iWeek) {
+                    case 0 : iWeek='星期日';break ;
+                    case 1 : iWeek='星期一';break ;
+                    case 2 : iWeek='星期二';break ;
+                    case 3 : iWeek='星期三';break ;
+                    case 4 : iWeek='星期四';break ;
+                    case 5 : iWeek='星期五';break ;
+                    case 6 : iWeek='星期六';break ;
+                }
+                str=iYear+'年'+iMonth+'月'+iDate+'日 '+iWeek+' '+toTwo(iHour)+':'+toTwo(iMinute)+':'+toTwo(iSecond);
+
+                oBody.innerHTML=str;
+            }
+        }
+
+        function toTwo(n){
+            return n<10?'0'+n:''+n;
+        }
+    </script>
+</head>
+<body style="font-size: 60px;">
+</body>
+</html>

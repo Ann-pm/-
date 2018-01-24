@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div,ul,li,img,h4,p{margin: 0;padding:0;}
+        li{list-style: none;}
+        #all{width: 510px;height: 312px;border: 6px solid #ccc;  margin: 100px auto;
+            position: relative; background-color: #fff; overflow: hidden;}
+        img,div,h4,p{position: absolute;}
+        img {width:500px;height: 300px;top:6px;left:5px;}
+        div {width:500px; height: 80px;left:5px; top:226px; background-color: #000;color: #fff;}
+        h4{ left: 20px; top:8px;}
+        p{ left: 20px; top:36px; font-size: 14px; width:440px; text-indent: 1em;}
+        .hide{display:none;}
+    </style>
+    <script src="doMove.js"></script>
+    <script>
+        window.onload=function(){
+            var aLi=document.getElementsByTagName('li');
+            var oAll=document.getElementById('all');
+            var aDiv=oAll.getElementsByTagName('div');
+            var num=0;
+
+            myFunction();//初始化
+
+            function myFunction(){
+                for(var i=0; i<aLi.length;i++){
+                    aLi[i].className='hide';
+                    aDiv[i].style.top=306+"px";
+                    aDiv[i].style.filter='alpha(opacity:'+0+')';
+                    aDiv[i].style.opacity=0;
+                }
+                aLi[num].className='';
+            }
+
+            setInterval(change,1500);
+
+            function change(){
+                myFunction();
+                doMove(aDiv[num],'top',5,226);
+                aDiv[num].style.filter='alpha(opacity:'+70+')';
+                aDiv[num].style.opacity=0.7;
+                num++;
+                if(num==aLi.length){
+                    num=0;
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<div id="all">
+    <ul>
+        <li>
+            <img src="images/4.1.jpg">
+            <div>
+                <h4>折天记</h4>
+                <p>开元之处，有神石散落大陆，相传观神石碑文可得知天机，至此神石成为人间圣物。</p>
+            </div>
+        </li>
+        <li>
+            <img src="images/4.2.jpg">
+            <div>
+                <h4>三生三世十里桃花</h4>
+                <p>桃花灼灼，枝叶蓁蓁，妖娆伤眼。记忆可以封存，忘得了前世情缘，
+                    忘不了桃林十里，亦忘不了十里桃林中玄衣的少年。</p>
+            </div>
+        </li>
+        <li>
+            <img src="images/4.3.jpg">
+            <div>
+                <h4>美人为馅</h4>
+                <p>在外人面前，韩沉这个男人，从来都是英俊冷酷，生人勿近。他似皑皑霜雪般皎洁清冷，又似黑夜流水般沉静动人。
+                </p>
+            </div>
+        </li>
+        <li>
+            <img src="images/4.4.jpg">
+            <div>
+                <h4>楚乔传</h4>
+                <p>乱世风谲云诡，她心随光亮灿若星子，砺炼成心怀天下威震四海的秀丽王</p>
+            </div>
+        </li>
+        <li>
+            <img src="images/4.5.jpg">
+            <div>
+                <h4>醉玲珑</h4>
+                <p>如果这世上所有的东西只能选一样，我宁肯要你的笑。若你苦在其中，即便是天下，我得之何用？</p>
+            </div>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body,div,a,ul,li { margin: 0; padding: 0;}
+        li { list-style:none;}
+        #header {margin:20px 200px;}
+        #nav { background: url(images/navbg.jpg) no-repeat; width:520px; height: 38px; position:relative; padding-top: 6px;}
+        #nav div { width:74px; float: left; text-align: center;  margin-left:16px; }
+        #nav div a {color: #fff; text-decoration: none;font-weight: bold; line-height: 26px;}
+        .more {position:absolute; right:24px;}
+        ul {height: 34px; display: none}
+        #home { background:url(images/bg1.jpg) no-repeat; width: 280px;  padding-left: 19px;}
+        #about { background:url(images/bg2.jpg) no-repeat 70px;width: 292px;  padding-left: 89px; }
+        #work { background:url(images/bg3.jpg) no-repeat 90px; width: 264px;  padding-left: 109px;}
+        #blog { background:url(images/bg4.jpg) no-repeat 170px;  width: 342px;  padding-left: 189px;}
+        ul li { float: left;}
+        ul li a {color: #216394; text-decoration: none; font-size: 12px; text-align: center;
+            line-height: 34px; margin: 8px;}
+        ul li a:hover {text-decoration: underline;}
+        .show {background-color:#7B9CC6;  height: 26px; filter:alpha(opacity:80); opacity: 0.8;
+            border-radius: 6px;}
+    </style>
+    <script>
+        window.onload = function (){
+            var oNav = document.getElementById('nav');
+            var aDiv = oNav.getElementsByTagName('div');
+            var aUl = document.getElementsByTagName('ul');
+            var num;
+            var timer = null;
+            for (var i=0; i<aDiv.length-1; i++){
+                aDiv[i].index = i;
+                aUl[i].index = i;
+                function clean (){
+                    for (var i=0; i<aDiv.length-1; i++){
+                        aDiv[i].className = '';
+                        aUl[i].style.display = 'none';
+                    }
+                }
+                function change (){
+                    num= this.index;
+                    clean ();
+                    aDiv[num].className = 'show';
+                    aUl[num].style.display = 'block';
+                }
+                aDiv[i].onmouseover = change ;
+                //鼠标在主导航条上移动
+                aDiv[i].onmouseout = function (){
+                    clearTimeout(timer);
+                    timer=setTimeout(clean,1500);
+                }
+                //鼠标移开主导航条
+                aUl[i].onmouseover=function(){
+                    clearTimeout(timer);
+                    num= this.index;
+                    aUl[num].style.display = 'block';
+                }
+                //鼠标在子导航条上移动
+                aUl[i].onmouseout=function(){
+                    clearTimeout(timer);
+                    timer=setTimeout(clean,1500);
+                }
+                //鼠标移开子导航条
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="header">
+        <div id="nav">
+            <div><a href="javascript:">首页</a></div>
+            <div><a href="javascript:">关于我们</a></div>
+            <div><a href="javascript:">作品</a></div>
+            <div><a href="javascript:">博客</a></div>
+            <div class="more"><a href="javascript:">>>更多</a></div>
+        </div>
+        <ul id="home">
+            <li><a href="#">最近更新</a></li>
+            <li><a href="#">活动</a></li>
+            <li><a href="#">报名试听</a></li>
+            <li><a href="#">学员反馈</a></li>
+        </ul>
+        <ul id="about">
+            <li><a href="#">秒味讲师</a></li>
+            <li><a href="#">培训方式</a></li>
+            <li><a href="#">培训理念</a></li>
+            <li><a href="#">联系我们</a></li>
+        </ul>
+        <ul id="work">
+            <li><a href="#">般固</a></li>
+            <li><a href="#">MATRIX</a></li>
+            <li><a href="#">留学e网</a></li>
+            <li><a href="#">ECMall</a></li>
+        </ul>
+        <ul id="blog">
+            <li><a href="#">JS教程</a></li>
+            <li><a href="#">弹出层效果</a></li>
+            <li><a href="#">3D球面标签云</a></li>
+            <li><a href="#">Window计算器</a></li>
+        </ul>
+    </div>
+</body>
+</html>

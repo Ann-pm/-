@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body {
+            position:relative;
+        }
+        li {
+            list-style:none;
+            display: inline-block;
+            width: 36px;
+            height: 32px;
+            border:1px solid #c0c0c0;
+            background-color: #efefef;
+            text-align: center;
+            line-height: 32px;
+            cursor: pointer;
+        }
+        h2 {
+            display: inline-block;
+        }
+        #btn1 {
+            display:inline-block;
+            width:102px;
+            height:42px;
+            background-color: red;
+            color:white;
+            font-size:16px;
+            font-weight: bold;
+            border:1px solid #f1f1f1;
+            text-align: center;
+            line-height: 42px;
+        }
+        #div1 {
+            width:102px;
+            height: 102px;
+            border:4px solid #000;
+        }
+        #div2 {
+            width:300px;
+            height: 200px;
+            position:absolute;
+            top:200px;
+            left:410px;
+            border:20px solid #9c949c;
+            display:none;
+        }
+        p {
+            display: inline-block;
+            font-size:16px;
+            line-height: 42px;
+            margin:0;
+        }
+        ul {
+            margin: 0;
+            border:0;
+            width:260px;
+            height:42px;
+            line-height: 42px;
+            padding-left:24px;
+            padding-top:0;
+            margin-top:10px;
+
+        }
+        #btn2 ,#btn3 {
+            width:62px;
+            height:32px;
+            background-color: #002952;
+            text-align: center;
+            color:#fff;
+            border:1px solid #f1f1f1;
+            margin-top: 6px;
+        }
+        #btn2 { margin-left: 75px;}
+    </style>
+    <script>
+        window.onload = function (){
+            var oBtn1 = document.getElementById ('btn1');
+            var oBtn2 = document.getElementById('btn2');
+            var oBtn3 = document.getElementById('btn3');
+            var oDiv1 = document.getElementById('div1');
+            var oDiv2 = document.getElementById('div2');
+            var oCol1 = document.getElementById('col1');
+            var oCol2 = document.getElementById('col2');
+            var oCol3 = document.getElementById('col3');
+            var oWid1 = document.getElementById('wid1');
+            var oWid2 = document.getElementById('wid2');
+            var oWid3 = document.getElementById('wid3');
+            var oHe1  = document.getElementById('he1');
+            var oHe2  = document.getElementById('he2');
+            var oHe3  = document.getElementById('he3');
+
+            oBtn1.onclick = function (){
+                oDiv2.style.display = 'block';
+            }
+            oBtn2.onclick = function (){
+                oDiv1.style.backgroundColor = '#fff';
+                oDiv1.style.width = '102px';
+                oDiv1.style.height = '102px';
+            }
+            oBtn3.onclick = function (){
+                oDiv2.style.display = 'none';
+            }
+            oCol1.onclick = function (){
+                oDiv1.style.backgroundColor = 'red';
+            }
+            oCol2.onclick = function (){
+                oDiv1.style.backgroundColor = 'yellow';
+            }
+            oCol3.onclick = function (){
+                oDiv1.style.backgroundColor = 'blue';
+            }
+            oWid1.onclick = function (){
+                oDiv1.style.width = '200px';
+            }
+            oWid2.onclick = function (){
+                oDiv1.style.width = '300px';
+            }
+            oWid3.onclick = function (){
+                oDiv1.style.width = '400px';
+            }
+            oHe1.onclick = function (){
+                oDiv1.style.height = '200px';
+            }
+            oHe2.onclick = function (){
+                oDiv1.style.height = '300px';
+            }
+            oHe3.onclick = function (){
+                oDiv1.style.height = '400px';
+            }
+
+        }
+    </script>
+</head>
+<body>
+    <h2>请为下面的DIV设置样式:</h2>
+    <input id="btn1" type="button" value="点击设置"/>
+    <div id="div1"></div>
+    <div id = "div2">
+    <ul>
+        <p>请选择背景色:</p>
+        <li id="col1" style="background-color: red">红</li>
+        <li id="col2" style="background-color: yellow">黄</li>
+        <li id="col3" style="background-color: blue">蓝</li>
+    </ul>
+    <ul>
+        <p>请选择宽(px):</p>
+         <li id="wid1">200</li>
+         <li id="wid2">300</li>
+         <li id="wid3">400</li>
+    </ul>
+     <ul>
+         <p>请选择高(px):</p>
+         <li id="he1">200</li>
+         <li id="he2">300</li>
+         <li id="he3">400</li>
+     </ul>
+     <input id="btn2" type="button" value="恢复"/>
+     <input id="btn3" type="button" value="确定"/>
+    </div>
+</body>
+</html>

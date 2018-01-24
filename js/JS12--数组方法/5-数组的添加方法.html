@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <script>
+        //var arr=[1,2,3];
+        //  alert(arr.push('abc'));  //返回值是数组的新长度
+
+        //  alert(arr.unshift('0')); //返回值是数组的新长度   IE6、7不支持unshift返回值
+
+        //var arr=['TM','钟毅','张森','杜鹏','leo'];
+        //alert(arr.pop());    //返回值是扔掉的值   最后的leo
+
+        //alert(arr.shift());   //返回值是扔掉的值   最前面的TM
+
+        var arr=['TM','钟毅','张森','杜鹏','leo'];
+        //删除、替换、添加
+        //arr.splice(0,2);  //删除      返回值是删除的值
+        //arr.splice(0,2,'莫涛 is TM');  //替换
+        arr.splice(1,0,'钟毅的媳妇');  //添加
+        //splice只有删除时  有返回值   返回的是删除的值
+
+        alert(arr);
+    </script>
+</body>
+</html>

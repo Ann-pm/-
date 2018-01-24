@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        p { margin:0; }
+        body { text-align:center; margin: 0;}
+        #p1{ margin:20px auto 0;}
+        #content { width:400px; height:400px; background-color:#f1f1f1;margin:20px auto 0;
+            border:10px solid #ccc;  position: relative; padding:0; }
+        a { width:40px; height:40px; background:#fff; filter:alpha(opacity:80); opacity:0.8; position:absolute; top:160px; font-size:18px; color:#000; text-align:center; line-height:40px; text-decoration:none; }
+        a:hover { filter:alpha(opacity:30); opacity:0.3; }
+        #prev { left:10px; }
+        #next { right:10px; }
+        #span1  {width:400px; height:30px;  line-height:30px;  background: #000; color:#ccc;  position:absolute; top: 0px; left: 0;}
+        #p2 {width:400px; height:30px; line-height:30px;  background: #000; color:#ccc;  position:absolute; bottom: 0px; left: 0;}
+        #btn1, #btn2 { margin-top: 10px;}
+        #img1 { width:400px; height:400px;}
+    </style>
+    <script>
+        window.onload = function (){
+            var i = 0;
+            var oSpan = document.getElementById('span1');
+            var oPrev = document.getElementById('prev');
+            var oNext = document.getElementById('next');
+            var oP1  = document.getElementById('p1');
+            var oP2  = document.getElementById('p2');
+            var arrUrl = ['images/1.jpg','images/2.jpg','images/3.jpg','images/4.jpg'];
+            var arrText = ['绿色精灵','健身狂人','破茧成蝶','烟雨深深'];
+            var oImg = document.getElementById('img1');
+            var oBtn1 = document.getElementById('btn1');
+            var oBtn2 = document.getElementById('btn2');
+
+
+            oBtn1.onclick = function () {
+                oP1.innerHTML = '图片可从最后一张跳转到第一张循环切换';
+                oPrev.onclick = function () {
+                    i--;
+                    if (i == 0) {
+                        i = arrUrl.length;
+                    }
+                    oSpan.innerHTML = i + '/' + arrUrl.length;
+                    oP2.innerHTML = arrText[i - 1];
+                    oImg.src = arrUrl[i - 1];
+                };
+                oNext.onclick = function () {
+                    i++;
+                    if (i == arrUrl.length + 1) {
+                        i = 1;
+                    }
+                    oSpan.innerHTML = i + '/' + arrUrl.length;
+                    oP2.innerHTML = arrText[i - 1];
+                    oImg.src = arrUrl[i - 1];s
+                };
+            }
+
+            oBtn2.onclick = function () {
+                oP1.innerHTML = '图片只能到最后一张或第一张切换';
+                oPrev.onclick = function () {
+                    i--;
+                    if (i == 0) {
+                        alert('这是第一张哦！');
+                        i = 1;
+                    }
+                    oSpan.innerHTML = i + '/' + arrUrl.length;
+                    oP2.innerHTML = arrText[i - 1];
+                    oImg.src = arrUrl[i - 1];
+                };
+                oNext.onclick = function () {
+                    i++;
+                    if (i == arrUrl.length + 1) {
+                        alert('这已经是最后一张照片了！');
+                        i = arrUrl.length;
+                    }
+                    oSpan.innerHTML = i + '/' + arrUrl.length;
+                    oP2.innerHTML = arrText[i - 1];
+                    oImg.src = arrUrl[i - 1];
+                };
+            }
+
+        }
+
+    </script>
+</head>
+<body>
+    <input id="btn1" type="button" value="循环切换">
+    <input id="btn2" type="button" value="顺序切换">
+    <p id="p1" >请选择图片切换模式</p>
+        <div id="content">
+            <span id="span1">图片数量正在加载中</span>
+            <a id="prev" href="javascript:;"><</a>
+            <a id="next" href="javascript:;">></a>
+            <img id="img1" />
+            <p id="p2">文字正在加载中</p>
+         </div>
+</body>
+</html>

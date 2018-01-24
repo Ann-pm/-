@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        img{position:absolute; top:200px;  width:180px;}
+        #img1{left: 300px;}
+        #img2{left: 600px;}
+    </style>
+    <script src="doMove.js"></script>
+    <script>
+        window.onload=function(){
+            var oImg1=document.getElementById("img1");
+            var oImg2=document.getElementById("img2");
+
+            oImg1.onclick=fnShake;
+            oImg2.onclick=fnShake;
+
+            function fnShake(){
+                var _this=this;
+                shake(_this,'left',function(){
+                    shake(_this,'top');
+                });
+            }
+        }
+
+        function shake(obj,attr,endFn){
+            var pos=parseInt(getStyle(obj,attr));
+            var arr=[];
+            var num=0;
+            for(var i=20;i>0;i-=2){
+                arr.push(i,-i);
+            }
+            arr.push(0);
+
+            clearInterval(obj.shake);
+            obj.shake=setInterval(function(){
+                obj.style[attr]=pos+arr[num]+'px';
+                num++;
+                if(num===arr.length){
+                    clearInterval(obj.shake);
+                    endFn&&endFn();
+                }
+            },50);
+        }
+    </script>
+</head>
+<body>
+    <img id="img1" src="images/1.jpg">
+    <img id="img2" src="images/2.jpg">
+</body>
+</html>

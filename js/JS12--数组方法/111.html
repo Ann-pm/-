@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div,h1,p,input,p,span{margin: 0; padding: 0;}
+        #all{background: #eff7ef; width: 1000px; height: 642px; margin: auto; position: relative;}
+        h1{position: absolute; top:20px; left: 456px;}
+        #explain{position: absolute; left: 256px; top:70px;}
+        input{position: absolute; left: 502px; top:106px;}
+        #source{width: 152px; height: 84px; position: absolute; top:154px; left: 6px; border: 1px solid #00636b;}
+        #source p{margin: 14px 10px; color: #000; font-size: 16px;}
+        #content{width: 800px; height: 450px; position: absolute; top:154px; left:160px;border: 1px solid #00636b;
+            overflow: hidden;}
+        #content img{position: absolute; top:0;}
+    </style>
+    <script>
+        window.onload=function(){
+            var oBtn=document.getElementsByTagName('input')[0];
+            var oSource=document.getElementById('source');
+            var aSpan=oSource.getElementsByTagName('span');
+            var oCon=document.getElementById('content');
+
+            var flag=0;
+            var dir=0;
+
+            var arr=['images/1.png','images/2.png','images/3.png','images/4.png','images/5.png','images/6.png',
+                'images/7.png','images/8.png','images/9.png','images/10.png','images/11.png'];
+
+            oBtn.onclick=function() {
+                if (flag) {return;}
+                flag=1;
+                oBtn.value = '游戏正在进行中...';
+                oBtn.style.opacity = 0.5;
+                oBtn.style.filter = 'alpha(opacity:50)';
+                function timer() {
+                    setTimeout(function () {
+                        var num = Math.round(Math.random() * (arr.length - 1));
+                        oCon.innerHTML = '<img style="left:' + (num * 74 + 16) + 'px' + '"; src="' + arr[num] + '"/>';
+                        var oImg = oCon.getElementsByTagName('img')[0];
+                        dir++;
+                        move(oImg, 'top', dir, 460, function () {
+                            oCon.innerHTML = '';
+                            timer();
+                        });
+                        oImg.onclick=function(){
+                            shake(oImg,'left',function(){
+                                oCon.innerHTML = '';
+                                timer();
+                            });
+                        }
+                    }, 500);
+                }
+                timer();
+            }
+        }
+        function move(obj,attr,dir,target,endFn){
+            dir=parseInt(getStyle(obj,attr))<target?dir:-dir;
+
+            clearInterval(obj.move);
+            obj.move=setInterval(function(){
+                var speed=parseInt(getStyle(obj,attr))+dir;
+                if(speed>target&&dir>0||speed<target&&dir<0){
+                    speed=target;
+                }
+                obj.style[attr] = speed +'px';
+                if(speed==target){
+                    clearInterval(obj.move);
+                    endFn&&endFn();
+                }
+            },30);
+        }  //move 函数
+        function shake(obj,attr,endFn){
+            if( obj.shaked ) { return; }   //值为true，则程序未执行完，返回，不执行下列代码
+            obj.shaked = true;     //执行程序时，值为true
+
+            var pos=parseInt(getStyle(obj,attr));
+            var arr=[];
+            var num=0;
+            for(var i=20;i>0;i-=2){
+                arr.push(i,-i);
+            }
+            arr.push(0);
+
+            clearInterval(obj.shake);
+            obj.shake=setInterval(function(){
+                obj.style[attr]=pos+arr[num]+'px';
+                num++;
+                if(num===arr.length){
+                    clearInterval(obj.shake);
+                    endFn&&endFn();
+                    obj.shaked = false;   //程序执行完，将true改为false，以便下次执行循环
+                }
+            },50);
+        }
+
+        function getStyle(obj,attr){
+            return obj.currentStyle?obj.currentStyle[attr]:getComputedStyle(obj)[attr];
+        }
+    </script>
+</head>
+<body>
+<div id="all">
+    <h1>你的鼠标有多快?</h1>
+    <p id="explain">游戏说明：点击“开始游戏”，随机掉下QQ表情，点中它，千万别让它掉下去！！！</p>
+    <input type="button" value="游戏开始" />
+    <div id="source">
+        <p>得分：<span>0</span>分</p>
+        <p>失分：<span>0</span>分</p>
+    </div>
+    <div id="content">
+    </div>
+</div>
+</body>
+</html>

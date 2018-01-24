@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <script>
+
+        //随机产生100个从0~1000之间不重复的整数
+        var arr=[];
+        for(var i=0; i<100; i++){
+            arr[i]=(Math.round(Math.random()*1000));
+            for( var k=0; k<arr.length-1; k++){
+                    if(arr[arr.length-1]===arr[k]){
+                        arr.splice(k,1);
+                        k--;
+                        i--;
+                    }
+            }
+            document.body.innerHTML+=arr[i]+'<br />';
+        }
+
+
+        //var str='aaaadsdfsjfedfkcjsof';
+        //indexOf('s')----为数组编写该方法：indexOf('img/1.jpg')
+
+        /*var str='aaaadsdfsjfedfkcjsof';
+        alert(str.indexOf('s'));*/
+
+        var arr1=['img/1.jpg','img/2.jpg','img/3.jpg','img/4.jpg','img/5.jpg'];
+        function arrIndexOf(arr,url){
+
+            for(var i=0; i<arr.length;i++){
+                if(arr[i]==url){
+                    return i;
+                }
+            }
+            return -1;
+        }
+        alert(arrIndexOf(arr1,'img/1.jpg'));
+
+    </script>
+</body>
+</html>

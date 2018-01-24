@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>浏览器对象</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <style>
+        div,h2,p,span,a{margin: 0;padding: 0;}
+        span{font-weight:bold; margin-right: 2px;}
+        h2{margin-bottom: 20px;}
+        p{float: left;}
+        a{color: aqua;}
+    </style>
+</head>
+<body>
+<!--先编写好网页布局-->
+<div>
+    <h2>操作成功</h2>
+    <p><span>5</span>秒后回到主页</p>
+    <!--<a href="javascript:back();">返回</a>-->
+    <a href="javascript:forward();">前进</a>
+    <!--<a href="http://www.baidu.com">返回</a>-->
+
+
+</div>
+<script type="text/javascript">
+    //获取显示秒数的元素，通过定时器来更改秒数。
+    var oSpan=document.getElementsByTagName("span")[0];
+    var num= 5,i;
+    function fn(){
+        oSpan.innerHTML=num;
+        num--;
+        i=setTimeout(fn,1000);
+        if(num==-1){
+            clearTimeout(i);
+            window.location.assign("http://www.baidu.com");
+        }
+    }
+    fn();
+    /*function back(){
+        window.history.back();
+    }*/
+    function forward(){
+        window.history.forward();
+    }
+    //通过window的location和history对象来控制网页的跳转。
+
+</script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body,div,p,ul,li,img { margin: 0; padding: 0;}
+        li { list-style: none;}
+        div { width: 500px; height: 60px; margin: 10px auto;}
+        p { font-size: 18px; line-height: 60px; float: left; margin-left: 20px; font-weight: bold; }
+        li { width: 26px; height: 22px; margin-top:18px; float: left; cursor: pointer; text-align: center;}
+        span { color:#f16c00; margin-top: 20px; margin-left: 16px; width:60px;height: 26px; font-size: 16px;
+            font-weight: bold;  float: left;}
+        #ima { margin-left: 6px; margin-top: -6px; }
+        .active {display: none; }
+    </style>
+    <script>
+        window.onload = function (){
+            var oUl = document.getElementById('list');
+            var aImg  = oUl.getElementsByTagName('img');
+            var oImg = document.getElementById('ima');
+            var oSpan = document.getElementsByTagName('span')[0];
+            var num;
+            var arr =[];
+            var onOff = true ;
+            for ( var i=0; i<aImg.length; i++){
+                arr.push(aImg[i].src);
+            }
+            function change() {
+                for ( var i=0; i<aImg.length; i++){
+                    aImg[i].src='images/star.jpg';
+                }
+                if (num<2){
+                    for ( var i=0; i<num+1; i++){
+                        aImg[i].src = 'images/gray.jpg';
+                    }
+                }else {
+                    for ( var i=0; i<num+1; i++){
+                        aImg[i].src = 'images/yellow.jpg';
+                    }
+                }
+                switch (num){
+                    case 0 : oSpan.innerHTML = '很差'; break ;
+                    case 1 : oSpan.innerHTML = '较差'; break ;
+                    case 2 : oSpan.innerHTML = '还行'; break ;
+                    case 3 : oSpan.innerHTML = '推荐'; break ;
+                    case 4 : oSpan.innerHTML = '力荐'; break ;
+                }
+            }
+            oUl.onmouseover = function (){
+                oSpan.className = '';
+                oImg.className = 'active';
+            }
+            oUl.onmouseout = function (){
+                if (onOff){
+                        oSpan.className = 'active';
+                        oImg.className = '';
+                }else {
+                        oSpan.className = '';
+                        oImg.className = 'active';
+                }
+            }
+            for (var i = 0; i < aImg.length; i++) {
+                aImg[i].index = i;
+                aImg[i].onmouseover = function () {
+                    num = this.index;
+                    change();
+                }
+                aImg[i].onclick = function () {
+                    arr = [];
+                    num = this.index;
+                    onOff = false;
+                    change();
+                    for ( var i=0; i<aImg.length; i++){
+                        arr.push(aImg[i].src);
+                    }
+                }
+                aImg[i].onmouseout = function () {
+                    num = this.index;
+                    for (var i = 0; i < aImg.length; i++){
+                        aImg[i].src = arr[i];
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<div>
+    <p>总体评价:</p>
+    <ul id="list">
+        <li><img src="images/star.jpg"></li>
+        <li><img src="images/star.jpg"></li>
+        <li><img src="images/star.jpg"></li>
+        <li><img src="images/star.jpg"></li>
+        <li><img src="images/star.jpg"></li>
+    </ul>
+    <span class="active"></span>
+    <img id="ima" src="images/prompt.jpg">
+</div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        p{border: 10px solid #ccc; background: #FFC; width: 400px; padding: 20px; font-size: 16px;
+            font-family: 微软雅黑；}
+    </style>
+</head>
+<body>
+    <input type="text" />
+    <input type="button" value="查找" />
+    <p>秒味课堂是一支独具特色的it培训团队，秒味反对传统it教育枯燥乏味的教学模式，秒味提供一种全新的快乐学习方法！<br />
+    2013年底，秒味课堂最新推送“远程培训”服务，受到很多朋友们的喜爱与追捧，我们必将更加努力的帮助远程学习的朋友们实现技术提升。。。
+    </p>
+
+    <script>
+        var aInp=document.getElementsByTagName('input');
+        var oP=document.getElementsByTagName('p')[0];
+
+        aInp[1].onclick=function(){
+            var str= aInp[0].value;
+
+            if(!str)return;
+            oP.innerHTML=oP.innerHTML.split(str).join('<span style="background: yellow;">'+str+'</span>');
+        }
+    </script>
+</body>
+</html>

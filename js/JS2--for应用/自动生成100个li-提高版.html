@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+    div { width:50px; height:50px; border:1px solid #f1f1f1; text-align: center; line-height:50px;display:inline-block; margin:8px; font-size:26px;
+    position:absolute;margin-top:50px;}
+    </style>
+    <script>
+        window.onload = function (){
+            var oBtn = document.getElementById('btn1');
+            var arrCol = ['red','yellow','blue','green'];
+            var oSpan = document.getElementById('span1');
+            var str='';
+            oBtn.onclick = function (){
+                for ( var i = 0; i<100; i++){
+                    str += '<div style="top: '+ Math.floor(i/10) * 55+'px; left: '+ i%10 * 55 +'px;background-color: '+ arrCol[i%arrCol.length]+'">'+ i +'</div>';
+                }
+                oSpan.innerHTML= str;
+            }
+        }
+    </script>
+</head>
+<body>
+    <input id="btn1" type="button" value="自动生成100个LI"/><br />
+    <span id="span1"></span>
+</body>
+</html>

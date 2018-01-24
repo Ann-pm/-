@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body,div,ul,li,span,input{margin: 0; padding:0;}
+        li { list-style: none;}
+        body {background: #f1f1f1;}
+        #content { width: 400px; height: 216px; background:#fff; margin:50px auto; border: 1px solid #cecece;
+            padding-top: 6px; font-size: 16px; line-height: 30px;}
+        #list li ,#footer li { height: 30px; position: relative;}
+        input { border: 2px solid #8c8c8c; width: 14px; height: 14px; margin-left: 18px;  }
+        #list { border-bottom:1px solid #dedede;}
+        #list li .song, #footer li .song { position: absolute; left:46px; }
+        #list li .singer {position: absolute; left:280px; }
+        #footer { margin-top: 2px; position: relative;}
+        #footer li {   width: 70px; float: left;}
+        #footer li span {height: 30px;width: 70px;}
+        #footer img {filter: alpha(opacity:40);opacity:0.4;position: absolute; left:70px; margin-left: 30px; }
+    </style>
+    <script>
+        window.onload = function (){
+            var oUl1 = document.getElementById('list');
+            var aLi1 = oUl1.getElementsByTagName('li');
+            var aInput = oUl1.getElementsByTagName('input');
+            var oUl2 = document.getElementById('footer');
+            var oInput = oUl2.getElementsByTagName('input')[0];
+            var aImg = document.getElementsByTagName('img');
+            var num= 0,count=0;
+            function compare (){
+                if (count==aInput.length){
+                    oInput.checked = true;
+                    for ( var j=0; j<aImg.length-1; j++){
+                        aImg[j].style.opacity = '1';
+                    }
+                }
+                if (count>0 && count<aInput.length){
+                    oInput.checked = false;
+                    for ( var j=0; j<aImg.length; j++){
+                        aImg[j].style.opacity = '1';
+                    }
+                }
+                if (count==0){
+                    oInput.checked = false;
+                    for ( var j=0; j<aImg.length; j++){
+                        aImg[j].style.opacity = '0.4';
+                    }
+                }
+            }
+            oInput.onclick = function (){
+                if (oInput.checked==true) {
+                    for (var i = 0; i < aInput.length; i++) {
+                        count = aInput.length;
+                        aInput[i].checked = true;
+                        for (var j = 0; j < aLi1.length; j++) {
+                            aLi1[i].style.background = '#f1f1f1';
+                        }
+                        for (var j = 0; j < aImg.length; j++) {
+                            aImg[j].style.opacity = '1';
+                        }
+                        change();
+                    }
+                }else {
+                    for (var i = 0; i < aInput.length; i++){
+                        count=0;
+                        aInput[i].checked = false;
+                        for ( var j=0; j<aLi1.length;j++){
+                            aLi1[i].style.background = '#fff';
+                        }
+                        for ( var j=0; j<aImg.length; j++){
+                            aImg[j].style.opacity = '0.4';
+                        }
+                        change();
+                    }
+                }
+            }
+            function change() {
+                for ( var i=0; i<aInput.length; i++){
+                    aInput[i].index = i;
+                    aInput[i].onclick = function (){
+                        num = this.index;
+                        if(this.checked){
+                            count++;
+                            aLi1[num].style.background = '#f1f1f1';
+                        }else {
+                            count--;
+                            aLi1[num].style.background = '#fff';
+                        }
+                        compare ();
+                    }
+                }
+            }
+            change();
+            for ( var i=0; i<aLi1.length; i++){
+                aLi1[i].onmouseover = function (){
+                    this.style.background = '#f1f1f1';
+                }
+                aLi1[i].onmouseout = function (){
+                    this.style.background = '#fff';
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<div id="content">
+    <ul id="list">
+        <li>
+            <input type="checkbox">
+            <span class="song">私奔</span>
+            <span class="singer">梁博</span>
+        </li>
+        <li>
+            <input type="checkbox">
+            <span class="song">北京北京</span>
+            <span class="singer">梁博,黄勇</span>
+        </li>
+        <li>
+            <input type="checkbox">
+            <span class="song">我爱你中国</span>
+            <span class="singer">梁博</span>
+        </li>
+        <li>
+            <input type="checkbox">
+            <span class="song">花火</span>
+            <span class="singer">贝贝</span>
+        </li>
+        <li>
+            <input type="checkbox">
+            <span class="song">姐姐</span>
+            <span class="singer">徐林</span>
+        </li>
+        <li>
+            <input type="checkbox">
+            <span class="song">爱要有你才完美</span>
+            <span class="singer">梁博,那英</span>
+        </li>
+    </ul>
+    <ul id="footer">
+        <li>
+            <input type="checkbox">
+            <span class="song">全选</span>
+        </li>
+        <li id="collect">
+            <img src="images/7.1.jpg">
+        </li>
+        <li id="add">
+            <img src="images/7.2.jpg">
+        </li>
+        <li id="delete">
+            <img src="images/7.3.jpg">
+        </li>
+    </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <script>
+        //var arr=[1,2,3];
+        //var arr=new Array(1,2,3);
+        //alert(arr);
+
+        //var arr=new  Array(4);
+        //alert(arr.length);   //4
+        //var arr=new  Array('4');
+        //alert(arr.length);   //1
+
+        var arr=['aaa',2,3];
+        arr.length=1;
+        alert(arr);   // aaa
+
+        arr.length=0;   //  清空数组
+        arr=[];   //  清空数组  效率更高
+
+        var str='aaaaa';
+        str.length=1;   //str的长度未变，字符串的length属性不可写
+        alert(str);
+    </script>
+</body>
+</html>

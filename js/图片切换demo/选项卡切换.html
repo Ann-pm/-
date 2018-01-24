@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>实践题 - 选项卡</title>
+    <style type="text/css">
+        /* CSS样式制作 */
+        div,ul,li{margin:0; padding:0;}
+        li{list-style:none;}
+        #header ul{border-bottom:2px solid #8B4513; height:32px;width:352px;}
+        #header ul li{margin-left:6px;width:80px; float:left; text-align:center;border:1px solid #ccc;border-bottom: none;
+        line-height: 30px; font-weight: bold;cursor: pointer;}
+        #header ul li.active{border-top:2px solid #8B4513; border-bottom:2px solid #ffffff; }
+        #con ul li {clear: left;}
+        #con ul { width:350px;height:110px;border: 1px solid blue;border-top:none; }
+        #con ul li{line-height: 24px; margin-left:6px; font-size: 16px;}
+        .hide{display: none;}
+    </style>
+    <script type="text/javascript">
+        window.onload=function(){
+            // JS实现选项卡切换
+            var oHeader=document.getElementById("header");
+            var aLi=oHeader.getElementsByTagName("li");
+            var oCon=document.getElementById("con");
+            var aUl= oCon.getElementsByTagName("ul");
+            var num;
+            /*for(var i=0;i<aLi.length;i++){
+                aLi[i].index=i;
+                aLi[i].onmouseover=function(){
+                    num=this.index;
+                    for(var i=0;i<aLi.length;i++){
+                        aLi[i].className="";
+                        aUl[i].className="hide";
+                    }
+                    aLi[num].className="active";
+                    aUl[num].className="";
+                }
+            }*/
+            for(var i=0;i<aLi.length;i++){
+                aLi[i].index=i;
+                change(aLi[i]);
+            }
+            function change(li){
+                li.onmouseover=function(){
+                    num=li.index;
+                    for(var i=0;i<aUl.length;i++){
+                        aUl[i].className="hide";
+                        aLi[i].className="";
+                    }
+                    aUl[num].className="";
+                    aLi[num].className="active";
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<!-- HTML页面布局 -->
+<div id="header">
+    <ul>
+        <li class="active">房产</li>
+        <li>家居</li>
+        <li>二手房</li>
+    </ul>
+</div>
+<div id="con">
+    <ul>
+        <li>275万购昌平邻铁三居 总价20万买一居</li>
+        <li>200万内购五环三居 140万安家东三环</li>
+        <li>北京首现零首付楼盘 53万购东5环50平</li>
+        <li>京楼盘直降5000 中信府 公园楼王现房</li>
+    </ul>
+    <ul class="hide">
+        <li>40平出租屋大改造 美少女的混搭小窝</li>
+        <li>经典清新简欧爱家 90平老房焕发新生</li>
+        <li>新中式的酷色温情 66平撞色活泼家居</li>
+        <li>瓷砖就像选好老婆 卫生间烟道的设计</li>
+    </ul>
+    <ul class="hide">
+        <li>通州豪华3居260万 二环稀缺2居250w甩</li>
+        <li>西3环通透2居290万 130万2居限量抢购</li>
+        <li>黄城根小学学区仅260万 121平70万抛!</li>
+        <li>独家别墅280万 苏州桥2居优惠价248万</li>
+    </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #bo1 { margin:auto;
+               background: url("images/图片1.JPG");
+               width:300px;
+               height: 584px;
+               position:relative;
+        }
+        #bq  { position:absolute;
+                top:472px;
+                left:36px;
+        }
+        #text1 { width:138px;
+                  height: 30px;
+                  position:absolute;
+                  top:468px; left:72px;
+                  border-radius:8px;
+                  border:1px solid #f1f1f1;
+        }
+        #btn1 { position:absolute;
+                 top:472px;
+                 left:218px; width:44px;
+                 height:26px; background-color:#ffffff;
+                 border:0;
+                 font-size: 16px;
+                 line-height: 26px;
+        }
+        #con1   { width:238px;
+            height:370px;
+            position:absolute;
+            top:88px;
+            left:30px;
+            overflow:scroll;
+        }
+        #con1 p { margin :2px;
+        }
+        #con1 span { display:inline-block;
+                       font-size: 14px;
+                       padding:5px;
+                       border:1px solid gray;
+                       border-radius: 5px;
+                       max-width: 160px;
+        }
+
+    </style>
+    <script>
+        window.onload = function (){
+            var oDiv = document.getElementById('con1');
+            var oIma = document.getElementById('bq');
+            var oText = document.getElementById('text1');
+            var oBtn = document.getElementById('btn1');
+            var onOff = true ;
+            oIma.onclick = function () {
+                if (onOff) {
+                    oIma.src = "images/bq2.png";
+                    onOff = false;
+                } else {
+                    oIma.src = "images/bq1.png";
+                    onOff = true;
+                }
+            }
+            oBtn.onclick = function (){
+                if (oText.value==''){
+                    alert('请输入聊天内容！');
+                }else {
+                    if (onOff) {
+                        oDiv.innerHTML = '<p style="text-align: left">'+'<img src = "images/bq1.png"/>'+'<span style="background:yellow">'+ oText.value +'</span>'+'</p>'+'<br />'+oDiv.innerHTML
+                        oText.value = '';
+                    }else {
+                        oDiv.innerHTML = '<p style="text-align: right"><span style="background:yellow">'+ oText.value +'</span>'+'<img src = "images/bq2.png"/>' +'</p>'+'<br />'+oDiv.innerHTML
+                        oText.value = '';
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="bo1" >
+        <div id="con1" ></div>
+        <img id="bq" src="images/bq1.png"/>
+        <input id="text1" type="text" />
+        <input id="btn1" type="button" value="发送"/>
+
+    </div>
+</body>
+</html>

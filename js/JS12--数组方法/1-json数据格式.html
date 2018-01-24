@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        var json= {name:'leo',age:32 };
+        // alert(json.name);
+        var imgData={
+            url:['img/1.png','img/2.png','img/3.png','img/4.png'],
+            text:['小宠物','图片二','图片三','图片四']
+        };
+        // alert(imgData.url[0]);
+
+        //var json2={name:'miaov'};
+        var json2={'name':'miaov'};   //字符串型的安全格式，推荐
+
+        //alert(json2.name);   //miaov
+        //alert(json2['name']);   //miaov
+       // alert(json2[name]);   //undefined
+
+        json2.name='秒味';
+        //alert(json2.name);  //秒味
+        json2['name']='miaov';
+        //alert(json2.name);  //miaov
+
+        var json3={abc:123, xyz:''}
+        var arr=[{'name':'TM','age':23},{'name':'leo','age':32}];
+        //alert(arr[0].name+'今年有'+arr[1]['age']);
+
+
+        var json4={name:'miaov',age:3,fun:'前端开发'};
+        for(var attr in json4){
+                //alert(attr);
+            //alert(json4[attr]);
+        }
+
+        var json5={
+            'url':['img/1.png','img/2.png','img/3.png','img/4.png'],
+            'text':['小宠物','图片二','图片三','图片四']
+        };
+        for(var attr in json5){
+            for(var i=0; i<json5[attr].length;i++){
+                 alert(json5[attr][i]);
+            }
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body,div,ul,li,img,span { margin:0; padding:0;}
+        li { list-style:none;}
+        #content { width: 860px; height:340px; margin: auto; padding: 8px;}
+        #nav { height: 330px; width: 144px; float: left;}
+        #nav li { border:1px solid #c6c6c6; border-right:0; background: #e7e7e7; height: 76px; cursor: pointer;
+        margin-bottom: 6px; font-size: 16px; color: #e71052; text-align: center; line-height: 76px;}
+        #list  {width:690px; height: 330px; float: right; }
+        #list img {width: 690px; height:300px;}
+        #list li {height: 20px; line-height: 20px; background: #5a5a52; color: #fff;  font-size: 8px;
+            display: table-cell;padding: 3px; border: 1px solid #fff; text-align: center; cursor: pointer;}
+        .hide {display: none;}
+        .table {display: table;width: 100%;}
+    </style>
+    <script>
+        window.onload = function (){
+            var oNav = document.getElementById('nav');
+            var aLi = oNav.getElementsByTagName('li');
+            var oList = document.getElementById('list');
+            var oImg = oList.getElementsByTagName('img')[0];
+            var aUl = oList.getElementsByTagName('ul');
+            var Url = ['images/5.1.jpeg','images/5.2.jpeg','images/5.4.jpg','images/5.5.jpg','images/5.6.jpg'];
+            var num1,num2;
+
+            //初始化
+            aLi[0].style.background = '#fff';
+            for ( var i=0; i<aUl.length; i++){
+                aUl[i].className = 'hide';
+            }
+            aUl[0].className = 'table';
+            var aLi1 = aUl[0].getElementsByTagName('li');
+            aLi1[0].style.background = '#ef3163';
+            for ( var i=0; i<aLi1.length;i++){
+                aLi1[i].index1 = i;
+                aLi1[i].onclick = function (){
+                    num2 = this.index1;
+                    for ( var i=0; i<aLi1.length;i++){
+                        aLi1[i].style.background = '';
+                    }
+                    aLi1[num2].style.background = '#ef3163';
+                    oImg.src = Url[num2];
+                }
+            }
+            //怎么简化代码？？？
+
+            for (var i=0; i<aLi.length; i++){
+                change (aLi[i]);
+                aLi[i].index = i;
+            }
+            function change (li){
+                li.onclick = tab;
+            }
+
+            function tab (li){
+                num1 = this.index;
+
+                var aLi1 = aUl[num1].getElementsByTagName('li');
+                for ( var i=0; i<aLi1.length;i++){
+                    aLi1[i].style.background = '';
+                }
+                aLi1[0].style.background = '#ef3163';
+                for (var i=0; i<aLi.length; i++){
+                    aLi[i].style.background = '';
+                }
+                aLi[num1].style.background = '#fff';
+                for ( var i=0; i<aUl.length; i++){
+                    aUl[i].className = 'hide';
+                }
+                aUl[num1].className = 'table';
+                for ( var i=0; i<aLi1.length;i++){
+                    aLi1[i].index1 = i;
+                    aLi1[i].onclick = function (){
+                        num2 = this.index1;
+                        for ( var i=0; i<aLi1.length;i++){
+                            aLi1[i].style.background = '';
+                        }
+                        aLi1[num2].style.background = '#ef3163';
+                        oImg.src = Url[num2];
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="content">
+        <ul id="nav">
+            <li>最热团购</li>
+            <li>商城特惠</li>
+            <li>名品推荐</li>
+            <li>缤纷活动</li>
+        </ul>
+        <div id="list">
+            <img src="images/5.1.jpeg">
+            <ul id="hot">
+                <li>雅诗兰黛完美修护唇膏</li>
+                <li>法国娇兰蜜约杨洋</li>
+                <li>A21抢万份店庆礼包</li>
+            </ul>
+            <ul id="special">
+                <li>雅诗兰黛完美修护唇膏</li>
+                <li>法国娇兰蜜约杨洋</li>
+                <li>A21抢万份店庆礼包</li>
+                <li>正春光趁现在焕装秀</li>
+            </ul>
+            <ul id="commend">
+                <li>雅诗兰黛完美修护唇膏</li>
+                <li>法国娇兰蜜约杨洋</li>
+                <li>A21抢万份店庆礼包</li>
+                <li>正春光趁现在焕装秀</li>
+                <li>春夏尚新狼性随行</li>
+            </ul>
+            <ul id="colorful">
+                <li>雅诗兰黛完美修护唇膏</li>
+                <li>法国娇兰蜜约杨洋</li>
+                <li>A21抢万份店庆礼包</li>
+                <li>正春光趁现在焕装秀</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
